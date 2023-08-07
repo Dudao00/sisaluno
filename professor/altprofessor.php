@@ -10,7 +10,7 @@
 </head>
 <body>
   <header>
-  <h1>Sistema Aluno</h1>
+  <h1>Sistema Professor</h1>
   </header>
   <main>
 
