@@ -1,0 +1,46 @@
+form{
+    background-color:rgb(129, 50, 132)   ;
+    width: 500px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(0, 0, 0);
+
+    display: grid;
+    gap: 5px;
+}
+
+input{
+    font-size: 1.1em;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    background-color: #ffa4a4;
+}
+
+select{
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    background-color: #ffa4a4;
+}
+
+div button{
+    padding: 5px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    background-color: #ffa4a4;
+}
+
+button a{
+    color: black;
+}
+
+input[type="submit"]{
+    width: 100%;
+}
+
+input[type="radio"]{
+    width: 15px;
+    height: 15px;
+}
