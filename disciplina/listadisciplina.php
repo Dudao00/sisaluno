@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-    <h1>Sistema Aluno</h1>
+    <h1>Sistema Disciplina</h1>
     </header>
     <main>
     <?php 
