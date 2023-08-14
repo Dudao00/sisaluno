@@ -22,14 +22,19 @@ require_once('../conexao.php');
 ##cadastrar
 if(isset($_GET['cadastrar'])){
         ##dados recebidos pelo metodo GET
-        $nomedisciplina = $_GET["nome"];
+        $nomedisciplina = $_GET["nomedisciplina"];
         $ch = $_GET["ch"];
         $semestre = $_GET["semestre"];
         $idprofessor = $_GET["professor"];
+        $Nota1 = $_GET["Nota1"];
+        $Nota2 = $_GET["Nota2"];
+
+        // Calcular a média
+        $Media = ($Nota1 + $Nota2) / 2;
 
         ##codigo SQL
-        $sql = "INSERT INTO disciplina(nomedisciplina, ch, semestre, idprofessor) 
-                VALUES('$nomedisciplina', '$ch', '$semestre', '$idprofessor')";
+        $sql = "INSERT INTO disciplina(nomedisciplina, ch, semestre, idprofessor, Nota1, Nota2, Media) 
+                VALUES('$nomedisciplina', '$ch', '$semestre', '$idprofessor', '$Nota1', '$Nota2', '$Media')";
 
         ##junta o codigo sql a conexao do banco
         $sqlcombanco = $conexao->prepare($sql);
@@ -46,32 +51,36 @@ if(isset($_GET['cadastrar'])){
 if(isset($_POST['update'])){
 
     ##dados recebidos pelo metodo POST
-    $nome = $_POST["nome"];
+    $nomedisciplina = $_POST["nomedisciplina"];
     $ch = $_POST["ch"];
     $semestre = $_POST["semestre"];
     $idprofessor = $_POST["professor"];
     $id = $_POST["id"];
+    $Nota1 = $_POST["Nota1"];
+    $Nota2 = $_POST["Nota2"];
    
-      ##codigo sql
-    $sql = "UPDATE  disciplina SET nomedisciplina   = :nome, ch = :ch, semestre = :semestre, idprofessor = :idprofessor WHERE id= :id ";
-   
-    ##junta o codigo sql a conexao do banco
-    $stmt = $conexao->prepare($sql);
+    // Calcular a média
+    $Media = ($Nota1 + $Nota2) / 2;
 
-    ##diz o paramentro e o tipo  do paramentros
-    $stmt->bindParam(':id',$id, PDO::PARAM_INT);
-    $stmt->bindParam(':nome',$nome, PDO::PARAM_STR);
-    $stmt->bindParam(':ch',$ch, PDO::PARAM_STR);
-    $stmt->bindParam(':semestre',$semestre, PDO::PARAM_STR);
-    $stmt->bindParam(':idprofessor',$idprofessor, PDO::PARAM_INT);
-    $stmt->execute();
+    // Atualizar os dados no banco usando PDO
+    $sql = "UPDATE disciplina SET nomedisciplina=:nomedisciplina, ch=:ch, semestre=:semestre, 
+            idprofessor=:idprofessor, Nota1=:Nota1, Nota2=:Nota2, Media=:Media WHERE id=:id";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bindParam(':nomedisciplina', $nomedisciplina);
+    $stmt->bindParam(':ch', $ch);
+    $stmt->bindParam(':semestre', $semestre);
+    $stmt->bindParam(':idprofessor', $idprofessor);
+    $stmt->bindParam(':Nota1', $Nota1);
+    $stmt->bindParam(':Nota2', $Nota2);
+    $stmt->bindParam(':Media', $Media);
+    $stmt->bindParam(':id', $id);
  
 
 
     if($stmt->execute())
         {
             echo " <strong>OK!</strong> a disciplina
-             $nome foi Alterada com sucesso!!!"; 
+             $nomedisciplina foi Alterada com sucesso!!!"; 
 
             echo " <button class='button-voltar'><a href='listadisciplina.php'>voltar</a></button>";
         }

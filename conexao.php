@@ -1,8 +1,8 @@
 <?php 
 //Criar as constantes com as credencias de acesso ao banco de dados
-define('HOST', '10.70.230.53:3306');
-define('USUARIO', 'sisaluno');
-define('SENHA', 'sisaluno2023');
+define('HOST', 'localhost');
+define('USUARIO', 'root');
+define('SENHA', '');
 define('DBNAME', 'sisaluno');
 
 //Criar a conexão com banco de dados usando o PDO e a porta do banco de dados
